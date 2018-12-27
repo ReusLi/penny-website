@@ -13,7 +13,6 @@ export default class App extends React.Component {
                     align="middle"
                 >
                     <Col className={"top-col"}
-                        offset={1}
                     >
                         小宝2018日记
                     </Col>
@@ -24,10 +23,27 @@ export default class App extends React.Component {
                         <Col className={"top-col"} span={8}>我</Col>
                     </Col>
                 </Row>
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <img src="../images/pitrue.jpg"></img>
+                <Row className={"middle"}>
+                    <Col span={8}>
+                        <Row className={"text1"}>喀什</Row>
+                        <Row className={"text2"}>LAND OF THE RISING SUN</Row>
+                        <Row className={"text3"}>subsequent compilations developin</Row>
+                        <Row className={"text4"}>
+                            Using this, no processing is done when webpack 'debug' mode is used and the loader acts as a regular file-loader.
+                            Use this to speed up initial and, to a lesser extent, subsequent compilations while developing or using webpack-dev-server.
+                            Normal builds are processed normally, outputting optimized files.
+                            Using this, no processing is done when webpack 'debug' mode is used and the loader acts as a regular file-loader.
+                            Use this to speed up initial and, to a lesser extent, subsequent compilations while developing or using webpack-dev-server.
+                            Normal builds are processed normally, outputting optimized files.
+                            Using this, no processing is done when webpack 'debug' mode is used and the loader acts as a regular file-loader.
+                            Use this to speed up initial and, to a lesser extent, subsequent compilations while developing or using webpack-dev-server.
+                            Normal builds are processed normally, outputting optimized files.
+                            Use this to speed up initial and, to a lesser extent, subsequent compilations while developing or using webpack-dev-server.
+                            Normal builds are processed normally, outputting optimized files.
+                        </Row>
+                    </Col>
+                    <Col span={14} offset={2}>
+                        <img className={"mid-img"} src="../images/pitrue.jpg"></img>
                     </Col>
                 </Row>
                 <Row></Row>

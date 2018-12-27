@@ -7,7 +7,7 @@
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    padding: 5%;
+    padding: 2% 6%;
     background-image: url('../images/app-bg.png');
 }
 
@@ -18,14 +18,42 @@
 .top {
     background: #ffffff;
     height: 50px;
-
+    border-bottom: 1px solid #ccc;
 }
 
 .top-col {
+    padding-left: 20px;
     height: 100%;
     font-size: 16px;
     font-weight: bold;
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+.middle {
+    padding: 20px;
+    background: #ffffff;
+}
+.mid-img {
+    width: 100%;
+    height: 690px;
+}
+
+.text1 {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.text2 {
+    font-weight: bold;
+    font-size: 76px;
+}
+
+.text3 {
+    font-weight: bold;
+}
+
+.text4 {
+    margin-top: 110px;
 }
