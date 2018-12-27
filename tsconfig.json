@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        // 编译标志或设置编译配置
+        "experimentalDecorators": true,
+        "baseUrl": "./src",
+        "outDir": "../dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5",
+        "jsx": "react",
+        "moduleResolution": "node",
+        "strictPropertyInitialization": false,
+        "allowJs": true,
+        "lib": [
+            "es5",
+            "dom",
+            "dom.iterable",
+            "es2015"
+        ],
+        "paths": {
+            "*": [
+                "*",
+                "pages/*",
+                "components/*",
+                "context/*",
+                "interface/*",
+                "utils/*",
+                "store/*"
+            ]
+        }
+        
+    },
+    "include": [
+        "./src/*"
+    ], 
+    "exclude": [
+        "node_modules"
+    ]
+}

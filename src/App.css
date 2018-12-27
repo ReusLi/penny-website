@@ -1,0 +1,15 @@
+@import '~antd/dist/antd.css';
+
+#root, .pageLayout {
+    height: 100%;
+    background: cadetblue;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    padding: 5%;
+}
+
+.kjax-handle-btn {
+    margin-bottom: 20px;
+}
