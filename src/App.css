@@ -16,6 +16,7 @@
     background: #ffffff;
     height: 50px;
     border-bottom: 1px solid #ccc;
+    
 }
 
 .top-col {
@@ -28,6 +29,7 @@
     align-items: center;
     cursor: pointer;
 }
+
 
 .middle {
     padding: 20px;

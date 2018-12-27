@@ -35,6 +35,13 @@ module.exports = {
                 loader: "source-map-loader"
             },
             {
+                test: /\.(sass|scss)$/i,
+                loaders: [
+                    'css-loader?minimize',
+                    'sass-loader'
+                ]
+            },
+            {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
