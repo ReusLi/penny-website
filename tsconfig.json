@@ -26,7 +26,8 @@
                 "context/*",
                 "interface/*",
                 "utils/*",
-                "store/*"
+                "store/*",
+                "edtior/*"
             ]
         }
         
