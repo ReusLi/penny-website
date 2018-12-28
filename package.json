@@ -71,6 +71,7 @@
     "monaco-editor-webpack-plugin": "^1.4.0",
     "mysql2": "^1.6.4",
     "node-sass": "^4.11.0",
+    "ory-editor": "^0.6.0",
     "pinyin": "^2.8.3",
     "react-ace": "^6.1.1",
     "react-monaco-editor": "^0.17.2",
