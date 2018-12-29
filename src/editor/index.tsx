@@ -1,33 +1,27 @@
 import * as React from 'react';
 
-import Editor, { Editable } from 'ory-editor-core'
-
-import image from 'ory-editor-plugins-image'
-import 'ory-editor-plugins-image/lib/index.css'
-
-import { createEmptyState } from 'ory-editor-core'
-
-const editable = createEmptyState()
-
-const editor = new Editor({
-  plugins: {
-    content: [image]
-  },
-  editables: [editable],
-})
-
+import Editor from 'wrap-md-editor'
 
 export default class PyEditor extends React.Component<{}, {}> {
-    constructor() {
-        super({})
-    }
 
     render() {
         return (
-            <Editable
-                id="editor"
-                editor={editor}
-            />
+            <Editor config={
+                {
+                    markdown: // testEditor.getMarkdown().replace(/`/g, '\\`')
+                        `## Test
+                    \`\`\`
+                    console.log('what can i do for you')
+                    \`\`\`
+                    
+                    # 123123`,
+                    onload: (editor: any, func: any) => {
+                        let md = editor.getMarkdown();
+                        let html = editor.getHTML();
+                        debugger
+                    }
+                }
+            } />
         )
     }
 }
