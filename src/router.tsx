@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import App from './App'
 import Home from './home'
 
 const Picture = () => <h2>Picture</h2>;
