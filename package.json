@@ -62,6 +62,7 @@
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
+    "editor.md": "^1.5.0",
     "karma-chai": "^0.1.0",
     "lodash": "^4.17.10",
     "log4js": "^3.0.6",
@@ -75,6 +76,7 @@
     "pinyin": "^2.8.3",
     "react-ace": "^6.1.1",
     "react-monaco-editor": "^0.17.2",
+    "react-router": "^4.3.1",
     "sass-loader": "^7.1.0",
     "sequelize": "^4.42.0",
     "serve-static": "^1.13.2"
