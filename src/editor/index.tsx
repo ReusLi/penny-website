@@ -18,7 +18,6 @@ export default class PyEditor extends React.Component<{}, {}> {
                     onload: (editor: any, func: any) => {
                         let md = editor.getMarkdown();
                         let html = editor.getHTML();
-                        debugger
                     }
                 }
             } />
