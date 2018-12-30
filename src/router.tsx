@@ -10,9 +10,12 @@ import PyEditor from 'components/editor'
 
 const Users = () => <h2>Users</h2>;
 
+const topRow = {
+  height: '100%', 
+}
 const AppRouter = () => (
   <Router>
-    <Row style={{height: '100%'}}>
+    <Row style={topRow} type="flex" justify="center">
       <Route path="/" exact component={Home} />
       <Route path="/pic/" component={DiaryDate} />
       <Route path="/note/" component={PyEditor} />

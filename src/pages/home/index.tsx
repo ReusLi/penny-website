@@ -1,10 +1,19 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import { Row, Col } from 'antd'
 
 export default class Home extends React.Component {
-
+    componentDidMount() {
+        axios.get('/api/test/testGet')
+            .then(response => {
+                this.setState({ serverports: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
     public render() {
         return (
             <Row>

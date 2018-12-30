@@ -5,7 +5,9 @@
     background: cadetblue;
 
     padding: 2% 6%;
-    background-image: url('../images/app-bg.png');
+    background-image: url('../images/diray-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .kjax-handle-btn {
