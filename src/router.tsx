@@ -1,23 +1,23 @@
 import * as React from 'react'
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Row } from 'antd';
 
-import Home from './home'
+import Home from 'pages/home'
+import DiaryDate from 'pages/diaryDate'
 
-import PyEditor from './editor'
+import PyEditor from 'components/editor'
 
-const Picture = () => <h2>Picture</h2>;
-const Note = () => <h2>Note</h2>;
 const Users = () => <h2>Users</h2>;
 
 const AppRouter = () => (
   <Router>
-    <div>
+    <Row style={{height: '100%'}}>
       <Route path="/" exact component={Home} />
-      <Route path="/pic/" component={Picture} />
+      <Route path="/pic/" component={DiaryDate} />
       <Route path="/note/" component={PyEditor} />
       <Route path="/users/" component={Users} />
-    </div>
+    </Row>
   </Router>
 );
 
