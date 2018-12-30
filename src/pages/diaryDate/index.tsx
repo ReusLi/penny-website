@@ -8,7 +8,7 @@ import { Calendar } from 'antd';
 const calendarStyle = { height: '100%', width: '100%', background: 'rgb(255, 255, 255, 0.3)', border: '1px solid #d9d9d9', borderRadius: 4 }
 
 const calendarComStyle = {}
-export default class DirayDate extends React.Component {
+export default class DirayDate extends React.Component<{}, {}> {
     constructor() {
         super({})
     }
