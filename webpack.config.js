@@ -100,7 +100,14 @@ module.exports = {
         // new MonacoWebpackPlugin(webpack)
     ],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        //服务器代理配置项
+        proxy: {
+            '/api':{
+                target: 'http://localhost:9080',
+                secure: false
+            }
+        }
     },
     resolve: {
         alias: {
