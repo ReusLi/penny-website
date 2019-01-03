@@ -1,17 +1,26 @@
 import * as React from 'react'
 import axios from 'axios'
+import http from 'utils/http'
 
 import { Row, Col } from 'antd'
 
 export default class Home extends React.Component {
-    componentDidMount() {
-        axios.get('/api/test/testGet')
-            .then(response => {
-                this.setState({ serverports: response.data });
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+    async componentDidMount() {
+        this.test();
+
+        // http.get('/api/test/testGet')
+        //     .then((response: any) => {
+        //         this.setState({ serverports: response.data });
+        //     })
+        //     .catch((error: any) => {
+        //         console.log(error);
+        //     })
+    }
+
+    async test() {
+        debugger
+        const result = await http.get('/api/test/testGet');
+        console.log(`result=${JSON.stringify(result)}`)
     }
     public render() {
         return (
