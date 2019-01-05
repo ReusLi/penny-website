@@ -14,7 +14,7 @@ export default class NavBar extends React.Component {
             >
                 <Col className={"top-col"}
                 >
-                    <Link to="/">小宝2018日记</Link>
+                    <Link to="/">Diary</Link>
                 </Col>
 
                 <Col span={4}>
