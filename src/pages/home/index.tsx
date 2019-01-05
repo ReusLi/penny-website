@@ -18,7 +18,6 @@ export default class Home extends React.Component {
     }
 
     async test() {
-        debugger
         const result = await http.get('/api/test/testGet');
         console.log(`result=${JSON.stringify(result)}`)
     }
