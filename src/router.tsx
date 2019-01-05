@@ -6,7 +6,7 @@ import { Row } from 'antd';
 import NavBar from 'pages/navBar'
 
 import Home from 'pages/home'
-import DiaryDate from 'pages/diaryDate'
+import DiaryDate from 'pages/diarys'
 import DiaryList from 'pages/diaryList'
 
 import PyEditor from 'components/editor'
