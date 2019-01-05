@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
                         <Link to="/pic">照片</Link>
                     </Col>
                     <Col className={"top-col"} span={8}>
-                        <Link to="/note">日记</Link>
+                        <Link to="/dirays">日记</Link>
                     </Col>
                     <Col className={"top-col"} span={8}>
                         <Link to="/user">我</Link>

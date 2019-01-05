@@ -19,7 +19,7 @@ const fullHeight = {
     height: '100%'
 }
 
-export default class DirayDate extends React.Component<{}, {}> {
+export default class Dirays extends React.Component<{}, {}> {
     constructor() {
         super({})
     }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Row, Col, Card, Icon } from 'antd'
+import { Row, Card, Icon } from 'antd'
 
 import EemptyTips from './emptyTips'
 
@@ -12,24 +12,7 @@ interface states {
     cards: any
 }
 
-const cardDatas: any = [
-    {
-        title: '2018年',
-        desc: '2018年要开开心心~'
-    },
-    {
-        title: '2018年',
-        desc: '2018年要开开心心~'
-    },
-    {
-        title: '2018年',
-        desc: '2018年要开开心心~'
-    },
-    {
-        title: '2018年',
-        desc: '2018年要开开心心~'
-    }
-]
+const cardDatas: any = []
 
 export default class DiaryList extends React.Component<{}, states> {
     constructor() {
@@ -57,6 +40,7 @@ export default class DiaryList extends React.Component<{}, states> {
                     justify='center'
                 >
                     <Card
+                        key={i}
                         className='diary-card'
                         cover={CoverImg}
                         actions={cardActions}
@@ -71,7 +55,7 @@ export default class DiaryList extends React.Component<{}, states> {
         }
 
         if (cards.length === 0) {
-            cards.push(<EemptyTips />)
+            cards.push(<EemptyTips key={new Date().getTime()}/>)
         }
 
         this.setState({
