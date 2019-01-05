@@ -8,7 +8,7 @@ import NavBar from 'pages/navBar'
 import Home from 'pages/home'
 import Dirays from 'pages/diarys'
 
-import PyEditor from 'components/editor'
+import WriteDiary from 'pages/writeDiary'
 
 const topRow = {
   height: '100%',
@@ -21,7 +21,7 @@ const AppRouter = () => (
         <Route path="/" exact component={Home} />
         {/* <Route path="/pic/" component={} /> */}
         <Route path="/dirays/" component={Dirays} />
-        <Route path="/write-dirays/" component={PyEditor} />
+        <Route path="/write-dirays/" component={WriteDiary} />
         {/* <Route path="/user/" component={} /> */}
       </Row>
     </Row>
