@@ -2,13 +2,7 @@ import * as React from 'react'
 
 import { Row } from 'antd'
 
-import $http from 'utils/http'
-
 import PyEditor from 'components/editor'
-
-import editorStore from 'store/editor'
-
-import { DiaryVO } from 'interface/diary'
 
 import SaveButton from './saveButton'
 

@@ -54,7 +54,7 @@ export default class SaveButton extends React.Component<{}, {}> {
 
         diaryVO.id = String(new Date().getTime())
         diaryVO.userId = 'penny'
-        diaryVO.createTime = diaryVO.updateTime = new Date().toDateString()
+        diaryVO.createTime = diaryVO.updateTime = new Date().toJSON()
         diaryVO.content = editorStore.getValue()
 
         const result = await $http.post('/api/pyDiary/add', {
