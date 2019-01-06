@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import { Row, Col, Form, Input, Modal } from 'antd'
 
 import $http from 'utils/http'
@@ -12,7 +10,7 @@ import diaryStore from 'store/diary'
 
 import { observer } from 'mobx-react'
 
-import ImageCrop from 'components/imageCrop'
+// import ImageCrop from 'components/imageCrop'
 
 const { TextArea } = Input;
 
@@ -23,6 +21,11 @@ const formItemLayout = {
 
 @observer
 export default class DiarySetting extends React.Component<{}, {}> {
+    state = {
+        title: '',
+        desc: ''
+    }
+    
     render() {
         return (
             <Modal
@@ -40,7 +43,7 @@ export default class DiarySetting extends React.Component<{}, {}> {
                             hasFeedback
                         >
                             <Input
-                                value={diaryStore.curDiaryModel.title}
+                                value={this.state.title || diaryStore.curDiaryModel.title}
                                 size="large"
                                 onChange={this.updateState.bind(this, 'title')}
                             />
@@ -52,7 +55,7 @@ export default class DiarySetting extends React.Component<{}, {}> {
                             hasFeedback
                         >
                             <TextArea
-                                value={diaryStore.curDiaryModel.desc}
+                                value={this.state.desc ||diaryStore.curDiaryModel.desc}
                                 autosize={{ minRows: 4, maxRows: 6 }}
                                 onChange={this.updateState.bind(this, 'desc')}
                             />
@@ -67,28 +70,33 @@ export default class DiarySetting extends React.Component<{}, {}> {
     }
 
     updateState(key: string, e: any) {
-        let curDiaryModel = diaryStore.curDiaryModel
         const value = e.target.value
         switch (key) {
             case 'title': {
-                curDiaryModel.title = value
+                this.setState({
+                    title: value
+                })
                 break;
             }
             case 'desc': {
-                curDiaryModel.desc = value
+                this.setState({
+                    desc: value
+                })
                 break;
             }
         }
-
-        diaryStore.setCurDiaryModel(curDiaryModel)
     }
 
     async updateDiaryInfo() {
-        let diaryVO: DiaryVO = diaryStore.curDiaryModel
+        // 更新curDiaryModel
+        let curDiaryModel: DiaryVO = diaryStore.curDiaryModel
+        curDiaryModel = Object.assign(curDiaryModel, this.state)
+        diaryStore.setCurDiaryModel(curDiaryModel)
+
         await $http.post('api/pyDiary/update', {
-            diaryVO: diaryVO
+            diaryVO: curDiaryModel
         })
-        diaryStore.updateDiaryList(diaryVO)
+        diaryStore.updateDiaryList(curDiaryModel)
         diaryStore.setIsShowSetting(false)
     }
 }

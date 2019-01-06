@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { Row, Card, Icon } from 'antd'
+import { Row, Card, Icon, Popconfirm } from 'antd'
 
 import $http from 'utils/http'
 
@@ -42,9 +42,15 @@ export default class DiaryList extends React.Component<{}, {}> {
                 <Icon type="edit"
                     onClick={this.diaryEdit.bind(this, VO)}
                 />,
-                <Icon type="delete"
-                    onClick={this.diaryDelete.bind(this, VO.id)}
-                />
+                <Popconfirm
+                    title='确定要删掉这篇日记吗?'
+                    placement="topRight"
+                    okText="是的"
+                    cancelText="算了"
+                    onConfirm={this.diaryDelete.bind(this, VO.id)}
+                >
+                    <Icon type="delete"/>
+                </Popconfirm>
             ]
             const source = require(`@images/yw/pic${i + 1}.jpg`)
             const CoverImg = <img src={source} style={{ width: '100%' }} />
@@ -116,6 +122,7 @@ export default class DiaryList extends React.Component<{}, {}> {
                 justify='center'
                 className='diary-list'>
                 {Cards}
+
             </Row>
         )
     }
