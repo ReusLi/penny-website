@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Row, Button } from 'antd'
+import { Row } from 'antd'
 
 import $http from 'utils/http'
 
@@ -9,6 +9,8 @@ import PyEditor from 'components/editor'
 import editorStore from 'store/editor'
 
 import { DiaryVO } from 'interface/diary'
+
+import SaveButton from './saveButton'
 
 export default class WriteDiary extends React.Component<{}, {}> {
     render() {
@@ -26,32 +28,9 @@ export default class WriteDiary extends React.Component<{}, {}> {
                     type='flex'
                     justify='end'
                 >
-                    <Button
-                        type='primary'
-                        onClick={this.save}
-                    >
-                        提交
-                        </Button>
+                    <SaveButton></SaveButton>
                 </Row>
             </Row>
         )
-    }
-
-    private save() {
-        const MDV = editorStore.getValue()
-
-        const diaryVO: DiaryVO = {
-            id: String(new Date().getTime()),
-            userId: 'penny',
-            title: '测试日记',
-            content: MDV,
-            createTime: new Date().toDateString(),
-            updateTime: new Date().toDateString()
-        }
-
-        $http.post('/api/pyDiary/add', {
-            diaryVO: diaryVO
-        })
-        console.log(MDV)
     }
 }

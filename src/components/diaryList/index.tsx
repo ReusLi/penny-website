@@ -11,6 +11,7 @@ import EemptyTips from './emptyTips'
 import { DiaryVO } from 'interface/diary'
 
 import appHistory from 'store/route'
+import diaryStore from 'store/diary'
 
 import './diaryList.css'
 
@@ -33,17 +34,21 @@ export default class DiaryList extends React.Component<{}, states> {
         const cardDatas: Array<DiaryVO> = await this.findDiary();
         let cards = [];
 
-        const cardActions = [
-            <Icon type="setting" />,
-            <Icon type="edit"
-                onClick={this.diaryEdit.bind(this)}
-            />,
-            <Icon type="delete" />
-        ]
 
         for (let i = 0, len = cardDatas.length; i < len; i++) {
+            const VO = cardDatas[i]
+            const cardActions = [
+                <Icon type="setting"
+                    onClick={this.diarySetting.bind(this, VO)}
+                />,
+                <Icon type="edit"
+                    onClick={this.diaryEdit.bind(this, VO)}
+                />,
+                <Icon type="delete"
+                    onClick={this.diaryDelete.bind(this, VO.id)}
+                />
+            ]
             const source = require(`@images/yw/pic${i + 1}.jpg`)
-
             const CoverImg = <img src={source} style={{ width: '100%' }} />
 
             cards.push(
@@ -59,8 +64,8 @@ export default class DiaryList extends React.Component<{}, states> {
                         actions={cardActions}
                     >
                         <Meta
-                            title={cardDatas[i].title}
-                            description={cardDatas[i].desc}
+                            title={VO.title}
+                            description={VO.desc}
                         />
                     </Card>
                 </Row>
@@ -83,9 +88,27 @@ export default class DiaryList extends React.Component<{}, states> {
             resolve(data)
         })
     }
+    private diarySetting() {
 
-    private diaryEdit() {
-        appHistory.push('/write-dirays');
+    }
+
+    private diaryEdit(model: DiaryVO) {
+        diaryStore.setCurDiaryModel(model)
+
+        appHistory.push({
+            pathname: '/write-dirays',
+            search: '?mode=modify'
+        });
+    }
+
+    private diaryDelete(id: string): Promise<boolean> {
+        return new Promise(async (resolve, reject) => {
+            const result = await $http.post('/api/pyDiary/delete', {
+                id: id
+            })
+            const isDeleteSuccess: boolean = result.data
+            resolve(isDeleteSuccess)
+        })
     }
 
     render() {
