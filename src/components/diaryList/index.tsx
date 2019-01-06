@@ -88,7 +88,8 @@ export default class DiaryList extends React.Component<{}, states> {
             resolve(data)
         })
     }
-    private diarySetting() {
+    private diarySetting(model: DiaryVO) {
+        diaryStore.setCurDiaryModel(model)
         diaryStore.setIsShowSetting(true)
     }
 

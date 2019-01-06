@@ -1,15 +1,30 @@
 import * as React from 'react'
 
-import ReactCrop from 'react-image-crop'
+import * as ReactCrop from 'react-image-crop'
+
+interface Crop {
+    aspect?: number;
+    x: number;
+    y: number;
+    width?: number;
+    height?: number;
+}
+
+interface PixelCrop {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
 
 export default class ImageCrop extends React.Component {
-    imageRef = null
+    imageRef: any = null
 
-    fileUrl = null
-    
+    fileUrl: any = null
+
     state = {
         src: '',
-        croppedImageUrl: null,
+        croppedImageUrl: '',
         crop: {
             aspect: 1,
             width: 50,
@@ -18,29 +33,34 @@ export default class ImageCrop extends React.Component {
         },
     };
 
-    onSelectFile = e => {
+    onSelectFile = (e: any) => {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
-            reader.addEventListener('load', () =>
-                this.setState({ src: reader.result }),
-            );
+            reader.addEventListener('load', () => {
+                debugger
+                this.setState({ src: reader.result })
+            });
             reader.readAsDataURL(e.target.files[0]);
         }
     };
 
     onImageLoaded = (image: HTMLImageElement) => {
+        debugger
         this.imageRef = image;
     };
 
-    onCropComplete = (crop, pixelCrop) => {
+    onCropComplete = (crop: Crop, pixelCrop: PixelCrop) => {
+        debugger
         this.makeClientCrop(crop, pixelCrop);
     };
 
-    onCropChange = crop => {
+    onCropChange = (crop: Crop) => {
+        debugger
         this.setState({ crop });
     };
 
-    async makeClientCrop(crop, pixelCrop) {
+    async makeClientCrop(crop: Crop, pixelCrop: PixelCrop) {
+        debugger
         if (this.imageRef && crop.width && crop.height) {
             const croppedImageUrl = await this.getCroppedImg(
                 this.imageRef,
@@ -51,7 +71,8 @@ export default class ImageCrop extends React.Component {
         }
     }
 
-    getCroppedImg(image, pixelCrop, fileName) {
+    getCroppedImg(image: HTMLImageElement, pixelCrop: PixelCrop, fileName: string) {
+        debugger
         const canvas = document.createElement('canvas');
         canvas.width = pixelCrop.width;
         canvas.height = pixelCrop.height;
@@ -91,9 +112,9 @@ export default class ImageCrop extends React.Component {
                     <ReactCrop
                         src={src}
                         crop={crop}
-                        onImageLoaded={this.onImageLoaded}
-                        onComplete={this.onCropComplete}
-                        onChange={this.onCropChange}
+                        onImageLoaded={this.onImageLoaded.bind(this)}
+                        onComplete={this.onCropComplete.bind(this)}
+                        onChange={this.onCropChange.bind(this)}
                     />
                 )}
                 {croppedImageUrl && (

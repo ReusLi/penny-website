@@ -9,7 +9,15 @@ class diaryStore {
 
     }
 
-    @observable curDiaryModel: DiaryVO = null
+    @observable curDiaryModel: DiaryVO = {
+        id: '',
+        title: '',
+        userId: '',
+        desc: '',
+        content: '',
+        createTime: '',
+        updateTime: ''
+    }
 
     @observable isShowSetting: boolean = false
 
