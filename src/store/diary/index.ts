@@ -40,6 +40,10 @@ class diaryStore {
         return search.indexOf('mode=modify') !== -1
     }
 
+    addDiary(diaryModel: DiaryVO) {
+        this.diaryList.unshift(diaryModel)
+    }
+
     updateDiaryList(diaryModel: DiaryVO) {
         this.diaryList = this.diaryList.map(diary => {
             diary.id === diaryModel.id

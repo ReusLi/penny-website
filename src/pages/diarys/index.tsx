@@ -1,10 +1,13 @@
 import * as React from 'react'
 
-import { Row, Col, Calendar } from 'antd';
+import { Row, Col, Calendar, Button } from 'antd';
 
 import { DiaryVO } from 'interface/diary'
 
 import DiaryList from 'components/diaryList'
+
+import appHistory from 'store/route'
+import diaryStore from 'store/diary'
 
 // import './datePicker.css'
 
@@ -26,7 +29,6 @@ export default class Dirays extends React.Component<{}, {}> {
         super({})
     }
 
-
     render() {
         return (
             <Row style={fullHeight}>
@@ -35,6 +37,19 @@ export default class Dirays extends React.Component<{}, {}> {
                         <div style={calendarStyle}>
                             <Calendar fullscreen={false} style={{ background: '#fff' }} />
                         </div>
+                    </Row>
+                    <Row
+                        style={{ marginLeft: '18px', marginTop: '20px' }}
+                        type='flex'
+                    >
+                        <Button
+                            style={{ width: '300px' }}
+                            type='primary'
+                            size='large'
+                            onClick={this.createDiary.bind(this)}
+                        >
+                            创建日记
+                        </Button>
                     </Row>
                 </Col>
                 <Col style={fullHeight}
@@ -50,5 +65,19 @@ export default class Dirays extends React.Component<{}, {}> {
                 </Col>
             </Row>
         )
+    }
+
+    createDiary() {
+        const diaryVO: DiaryVO = {
+            id: '',
+            title: '',
+            userId: '',
+            desc: '',
+            content: '',
+            createTime: '',
+            updateTime: ''
+        }
+        diaryStore.setCurDiaryModel(diaryVO)
+        appHistory.push('write-dirays')
     }
 }

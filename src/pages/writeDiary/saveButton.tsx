@@ -62,6 +62,7 @@ export default class SaveButton extends React.Component<{}, {}> {
         })
         const model: DiaryVO = result.data
         diaryStore.setCurDiaryModel(model)
+        diaryStore.addDiary(model)
         message.success('保存成功')
         appHistory.push({
             pathname: '/write-dirays',
