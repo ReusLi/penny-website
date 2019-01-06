@@ -2,7 +2,11 @@ import * as React from 'react'
 
 import { Row, Card, Icon } from 'antd'
 
+import $http from 'utils/http'
+
 import EemptyTips from './emptyTips'
+
+import { DiaryVO } from 'interface/diary'
 
 import './diaryList.css'
 
@@ -23,7 +27,8 @@ export default class DiaryList extends React.Component<{}, states> {
         }
     }
 
-    componentWillMount() {
+    async componentWillMount() {
+        await this.findDiary();
         let cards = [];
 
         const cardActions = [<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]
@@ -55,12 +60,16 @@ export default class DiaryList extends React.Component<{}, states> {
         }
 
         if (cards.length === 0) {
-            cards.push(<EemptyTips key={new Date().getTime()}/>)
+            cards.push(<EemptyTips key={new Date().getTime()} />)
         }
 
         this.setState({
             cards: cards
         })
+    }
+
+    private async findDiary() {
+        await $http.post('/api/pyDiary/findAll')
     }
 
     render() {

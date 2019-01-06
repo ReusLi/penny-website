@@ -1,10 +1,9 @@
-const Dao = () => {
-    this.dao = require('./baseDao')('py_diary')
-}
-/**
-* Dao
-*/
-Dao.prototype = {
+const dao = require('./baseDao')('py_diary')
 
+class pyDiaryDao extends dao {
+    constructor() {
+        super()
+    }
 }
-module.exports = new Dao()
+
+module.exports = new pyDiaryDao()

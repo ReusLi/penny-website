@@ -1,10 +1,9 @@
-const Dao = () => {
-    this.dao = require('./baseDao')('py_user')
-}
-/**
-* Dao
-*/
-Dao.prototype = {
+const dao = require('./baseDao')('py_user')
 
+class pyUserDao extends dao {
+    constructor() {
+        super()
+    }
 }
-module.exports = new Dao()
+
+module.exports = new pyUserDao()

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
-import http from 'utils/http'
+import $http from 'utils/http'
 
 import { Row, Col } from 'antd'
 
@@ -18,7 +18,7 @@ export default class Home extends React.Component {
     }
 
     async test() {
-        const result = await http.get('/api/test/testGet');
+        const result = await $http.get('/api/test/testGet');
         console.log(`result=${JSON.stringify(result)}`)
     }
     public render() {

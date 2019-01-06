@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { Row, Button } from 'antd'
 
+import $http from 'utils/http'
+
 import PyEditor from 'components/editor'
 
 import editorStore from 'store/editor'

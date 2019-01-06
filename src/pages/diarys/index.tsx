@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { Row, Col, Calendar } from 'antd';
 
+import { DiaryVO } from 'interface/diary'
+
 import DiaryList from 'components/diaryList'
 
 // import './datePicker.css'
