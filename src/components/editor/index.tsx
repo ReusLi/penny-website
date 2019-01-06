@@ -5,7 +5,7 @@ import Editor from 'wrap-md-editor'
 import editorStore from 'store/editor'
 import diaryStore from 'store/diary'
 
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react'
 
 const markdown = `### ${new Date().toLocaleDateString()}`
 

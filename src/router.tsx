@@ -12,6 +12,7 @@ import Home from 'pages/home'
 import Dirays from 'pages/diarys'
 
 import WriteDiary from 'pages/writeDiary'
+import DiarySetting from 'components/diarySetting'
 
 
 const topRow = {
@@ -28,6 +29,7 @@ const AppRouter = () => (
         <Route path="/write-dirays/" component={WriteDiary} />
         {/* <Route path="/user/" component={} /> */}
       </Row>
+      <DiarySetting></DiarySetting>
     </Row>
   </Router>
 );

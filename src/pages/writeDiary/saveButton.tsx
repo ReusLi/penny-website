@@ -26,7 +26,6 @@ export default class SaveButton extends React.Component<{}, {}> {
         diaryStore.isModifyMode()
             ? this.updateDiary()
             : this.addDiary()
-
     }
 
     private async updateDiary() {
