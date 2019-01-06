@@ -45,16 +45,17 @@ export default class SaveButton extends React.Component<{}, {}> {
     }
 
     private async addDiary() {
-        const MDV = editorStore.getValue()
-
-        const diaryVO: DiaryVO = {
-            id: String(new Date().getTime()),
-            userId: 'penny',
-            title: '测试日记',
-            content: MDV,
-            createTime: new Date().toDateString(),
-            updateTime: new Date().toDateString()
+        let diaryVO: DiaryVO = diaryStore.curDiaryModel
+        
+        if (diaryVO.title === '') {
+            diaryStore.setIsShowSetting(true)
+            return false
         }
+
+        diaryVO.id = String(new Date().getTime())
+        diaryVO.userId = 'penny'
+        diaryVO.createTime = diaryVO.updateTime = new Date().toDateString()
+        diaryVO.content = editorStore.getValue()
 
         const result = await $http.post('/api/pyDiary/add', {
             diaryVO: diaryVO

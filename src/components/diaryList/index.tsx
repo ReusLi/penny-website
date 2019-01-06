@@ -123,7 +123,6 @@ export default class DiaryList extends React.Component<{}, {}> {
                 justify='center'
                 className='diary-list'>
                 {Cards}
-
             </Row>
         )
     }

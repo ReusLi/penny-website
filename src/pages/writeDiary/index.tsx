@@ -12,6 +12,8 @@ import { DiaryVO } from 'interface/diary'
 
 import SaveButton from './saveButton'
 
+import DiarySetting from 'components/diarySetting'
+
 export default class WriteDiary extends React.Component<{}, {}> {
     render() {
         return (
@@ -30,6 +32,7 @@ export default class WriteDiary extends React.Component<{}, {}> {
                 >
                     <SaveButton></SaveButton>
                 </Row>
+                <DiarySetting></DiarySetting>
             </Row>
         )
     }
