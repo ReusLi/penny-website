@@ -14,7 +14,7 @@ const BaseDao = function (modelName) {
         find(limit, offset) {
             return new Promise(function (resolve, reject) {
                 entityObj.findAll({
-                    limit: parseInt(limit) || 10, //默认查询10条
+                    limit: parseInt(limit) || 9999, //默认查询10条
                     offset: parseInt(offset) || 0 //默认查询第一页
                 }).then(function (result) {
                     resolve(result);

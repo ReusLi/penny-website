@@ -4,13 +4,13 @@ const router = express.Router();
 const diaryDao = require('../dao/pyDiaryDao')
 
 router.post('/findAll', async (req, res, next) => {
-    const diaryList = await diaryDao.findAll();
+    const diaryList = await diaryDao.find();
     res.json(diaryList)
 })
 
 router.post('/add', async (req, res, next) => {
     const diaryVO = req.body.diaryVO
-    diaryDao.add(diaryVO)
+    diaryDao.doAdd(diaryVO)
     res.json('OK')
 })
 
