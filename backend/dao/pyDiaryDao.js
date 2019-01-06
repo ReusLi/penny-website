@@ -1,5 +1,5 @@
 const Dao = () => {
-    this.dao = require('./baseDao')('py_user')
+    this.dao = require('./baseDao')('py_diary')
 }
 /**
 * Dao
