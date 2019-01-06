@@ -19,10 +19,16 @@ class diaryStore {
         updateTime: ''
     }
 
+    @observable diaryList: Array<DiaryVO> = []
+
     @observable isShowSetting: boolean = false
 
     @action setCurDiaryModel(curDiaryModel: DiaryVO) {
         this.curDiaryModel = curDiaryModel
+    }
+
+    @action setDiaryList(diaryList: Array<DiaryVO>) {
+        this.diaryList = diaryList
     }
 
     @action setIsShowSetting(isShowSetting: boolean) {
@@ -32,6 +38,15 @@ class diaryStore {
     isModifyMode() {
         const search = appHistory.location.search
         return search.indexOf('mode=modify') !== -1
+    }
+
+    updateDiaryList(diaryModel: DiaryVO) {
+        this.diaryList = this.diaryList.map(diary => {
+            diary.id === diaryModel.id
+                ? diary = diaryModel
+                : null
+            return diary
+        })
     }
 }
 

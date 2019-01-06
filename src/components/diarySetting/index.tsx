@@ -88,6 +88,7 @@ export default class DiarySetting extends React.Component<{}, {}> {
         await $http.post('api/pyDiary/update', {
             diaryVO: diaryVO
         })
+        diaryStore.updateDiaryList(diaryVO)
         diaryStore.setIsShowSetting(false)
     }
 }

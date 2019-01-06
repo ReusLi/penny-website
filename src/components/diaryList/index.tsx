@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { observer } from 'mobx-react'
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { Row, Card, Icon } from 'antd'
@@ -17,23 +19,19 @@ import './diaryList.css'
 
 const { Meta } = Card
 
-interface states {
-    cards: any
-}
-
-export default class DiaryList extends React.Component<{}, states> {
+@observer
+export default class DiaryList extends React.Component<{}, {}> {
     constructor() {
         super({})
-
-        this.state = {
-            cards: []
-        }
     }
 
     async componentWillMount() {
-        const cardDatas: Array<DiaryVO> = await this.findDiary();
-        let cards = [];
+        await this.findDiary();
+    }
 
+    private getCards() {
+        const cardDatas: Array<DiaryVO> = diaryStore.diaryList
+        let cards = [];
 
         for (let i = 0, len = cardDatas.length; i < len; i++) {
             const VO = cardDatas[i]
@@ -76,16 +74,15 @@ export default class DiaryList extends React.Component<{}, states> {
             cards.push(<EemptyTips key={new Date().getTime()} />)
         }
 
-        this.setState({
-            cards: cards
-        })
+        return cards;
     }
 
     private findDiary(): Promise<Array<DiaryVO>> {
         return new Promise(async (resolve, reject) => {
             const result = await $http.post('/api/pyDiary/findAll')
             const data: Array<DiaryVO> = result.data
-            resolve(data)
+            diaryStore.setDiaryList(data)
+            resolve(diaryStore.diaryList)
         })
     }
     private diarySetting(model: DiaryVO) {
@@ -113,11 +110,12 @@ export default class DiaryList extends React.Component<{}, states> {
     }
 
     render() {
+        const Cards = this.getCards()
         return (
             <Row type='flex'
                 justify='center'
                 className='diary-list'>
-                {this.state.cards}
+                {Cards}
             </Row>
         )
     }
