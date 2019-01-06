@@ -14,18 +14,18 @@ export default class NavBar extends React.Component {
             >
                 <Col className={"top-col"}
                 >
-                    <Link to="/">Diary</Link>
+                    <Link to="/">home</Link>
                 </Col>
 
                 <Col span={4}>
                     <Col className={"top-col"} span={8}>
-                        <Link to="/pic">照片</Link>
+                        <Link to="/pic">picture</Link>
                     </Col>
                     <Col className={"top-col"} span={8}>
-                        <Link to="/dirays">日记</Link>
+                        <Link to="/dirays">diary</Link>
                     </Col>
                     <Col className={"top-col"} span={8}>
-                        <Link to="/user">我</Link>
+                        <Link to="/user">me</Link>
                     </Col>
                 </Col>
             </Row>
