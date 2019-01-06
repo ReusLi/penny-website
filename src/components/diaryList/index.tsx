@@ -2,8 +2,6 @@ import * as React from 'react'
 
 import { observer } from 'mobx-react'
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import { Row, Card, Icon, Popconfirm } from 'antd'
 
 import $http from 'utils/http'
@@ -111,6 +109,9 @@ export default class DiaryList extends React.Component<{}, {}> {
                 id: id
             })
             const isDeleteSuccess: boolean = result.data
+            isDeleteSuccess
+                ? diaryStore.removeDiary(id)
+                : null
             resolve(isDeleteSuccess)
         })
     }

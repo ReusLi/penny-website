@@ -48,6 +48,10 @@ class diaryStore {
             return diary
         })
     }
+
+    removeDiary(id: string) {
+        this.diaryList = this.diaryList.filter(diary => diary.id !== id)
+    }
 }
 
 export default new diaryStore()
