@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import { Row, Card, Icon } from 'antd'
 
 import $http from 'utils/http'
@@ -8,8 +10,9 @@ import EemptyTips from './emptyTips'
 
 import { DiaryVO } from 'interface/diary'
 
+import appHistory from 'store/route'
+
 import './diaryList.css'
-import { resolve } from 'dns';
 
 const { Meta } = Card
 
@@ -30,7 +33,13 @@ export default class DiaryList extends React.Component<{}, states> {
         const cardDatas: Array<DiaryVO> = await this.findDiary();
         let cards = [];
 
-        const cardActions = [<Icon type="setting" />, <Icon type="edit" />, <Icon type="delete" />]
+        const cardActions = [
+            <Icon type="setting" />,
+            <Icon type="edit"
+                onClick={this.diaryEdit.bind(this)}
+            />,
+            <Icon type="delete" />
+        ]
 
         for (let i = 0, len = cardDatas.length; i < len; i++) {
             const source = require(`@images/yw/pic${i + 1}.jpg`)
@@ -75,10 +84,13 @@ export default class DiaryList extends React.Component<{}, states> {
         })
     }
 
+    private diaryEdit() {
+        appHistory.push('/write-dirays');
+    }
+
     render() {
         return (
             <Row type='flex'
-                // align='middle'
                 justify='center'
                 className='diary-list'>
                 {this.state.cards}
