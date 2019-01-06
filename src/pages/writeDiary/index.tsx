@@ -8,6 +8,8 @@ import PyEditor from 'components/editor'
 
 import editorStore from 'store/editor'
 
+import { DiaryVO } from 'interface/diary'
+
 export default class WriteDiary extends React.Component<{}, {}> {
     render() {
         return (
@@ -36,7 +38,20 @@ export default class WriteDiary extends React.Component<{}, {}> {
     }
 
     private save() {
-        const mdv = editorStore.getValue()
-        console.log(mdv)
+        const MDV = editorStore.getValue()
+
+        const diaryVO: DiaryVO = {
+            id: String(new Date().getTime()),
+            userId: 'penny',
+            title: '测试日记',
+            content: MDV,
+            createTime: new Date().toDateString(),
+            updateTime: new Date().toDateString()
+        }
+
+        $http.post('/api/pyDiary/add', {
+            diaryVO: diaryVO
+        })
+        console.log(MDV)
     }
 }

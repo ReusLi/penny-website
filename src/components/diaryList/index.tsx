@@ -9,14 +9,13 @@ import EemptyTips from './emptyTips'
 import { DiaryVO } from 'interface/diary'
 
 import './diaryList.css'
+import { resolve } from 'dns';
 
 const { Meta } = Card
 
 interface states {
     cards: any
 }
-
-const cardDatas: any = []
 
 export default class DiaryList extends React.Component<{}, states> {
     constructor() {
@@ -28,10 +27,10 @@ export default class DiaryList extends React.Component<{}, states> {
     }
 
     async componentWillMount() {
-        await this.findDiary();
+        const cardDatas: Array<DiaryVO> = await this.findDiary();
         let cards = [];
 
-        const cardActions = [<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]
+        const cardActions = [<Icon type="setting" />, <Icon type="edit" />, <Icon type="delete" />]
 
         for (let i = 0, len = cardDatas.length; i < len; i++) {
             const source = require(`@images/yw/pic${i + 1}.jpg`)
@@ -68,14 +67,18 @@ export default class DiaryList extends React.Component<{}, states> {
         })
     }
 
-    private async findDiary() {
-        await $http.post('/api/pyDiary/findAll')
+    private findDiary(): Promise<Array<DiaryVO>> {
+        return new Promise(async (resolve, reject) => {
+            const result = await $http.post('/api/pyDiary/findAll')
+            const data: Array<DiaryVO> = result.data
+            resolve(data)
+        })
     }
 
     render() {
         return (
             <Row type='flex'
-                align='middle'
+                // align='middle'
                 justify='center'
                 className='diary-list'>
                 {this.state.cards}
