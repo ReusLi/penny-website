@@ -30,7 +30,7 @@ export default class DiarySetting extends React.Component<{}, {}> {
         return (
             <Modal
                 title='详细信息'
-                style={{ top: 20 }}
+                style={{ top: 20, height: '95%' }}
                 width='90%'
                 visible={diaryStore.isShowSetting}
                 onCancel={() => diaryStore.setIsShowSetting(false)}

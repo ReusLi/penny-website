@@ -8,3 +8,15 @@
     width: 80%!important;
     margin-top: 20px!important;
 }
+
+.zoom-image {
+    width: 100%;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+}

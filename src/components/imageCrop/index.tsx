@@ -17,11 +17,6 @@ interface PixelCrop {
     height: number;
 }
 
-interface CanvasCompositing {
-    globalAlpha: number;
-    globalCompositeOperation: string;
-}
-
 export default class ImageCrop extends React.Component {
     imageRef: any = null
 
@@ -43,7 +38,7 @@ export default class ImageCrop extends React.Component {
         const Component = (ReactCrop as any).default
 
         return (
-            <div className="App">
+            <div>
                 <div>
                     <input type="file" onChange={this.onSelectFile} />
                 </div>
@@ -51,13 +46,15 @@ export default class ImageCrop extends React.Component {
                     <Component
                         src={src}
                         crop={crop}
+                        style={{ width: '500px' }}
                         onImageLoaded={this.onImageLoaded.bind(this)}
                         onComplete={this.onCropComplete.bind(this)}
                         onChange={this.onCropChange.bind(this)}
                     />
                 )}
                 {croppedImageUrl && (
-                    <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
+                    <img src={croppedImageUrl}
+                    />
                 )}
             </div>
         );

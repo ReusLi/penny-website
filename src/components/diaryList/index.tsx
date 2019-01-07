@@ -56,7 +56,7 @@ export default class DiaryList extends React.Component<{}, {}> {
                 </Popconfirm>
             ]
             const source = require(`@images/yw/pic${i + 1}.jpg`)
-            const coverImg = <img src={source} style={{ width: '100%' }} />
+            const coverImg = <img src={source} className='zoom-image' />
 
             cards.push(
                 <Row key={i}
