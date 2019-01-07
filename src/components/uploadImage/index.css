@@ -1,0 +1,8 @@
+.avatar-uploader > .ant-upload {
+    width: 900px!important;
+    height: 500px!important;
+}
+
+.avatar-uploader > .ant-upload img {
+    width: 100%;
+}

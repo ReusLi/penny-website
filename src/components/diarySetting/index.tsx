@@ -12,6 +12,8 @@ import { observer } from 'mobx-react'
 
 import ImageCrop from 'components/imageCrop'
 
+import UpLoadImage from 'components/uploadImage'
+
 const { TextArea } = Input;
 
 const formItemLayout = {
@@ -63,7 +65,8 @@ export default class DiarySetting extends React.Component<{}, {}> {
                         </Form.Item>
                     </Col>
                     <Col span={18}>
-                        <ImageCrop></ImageCrop>
+                        {/* <ImageCrop></ImageCrop> */}
+                        <UpLoadImage></UpLoadImage>
                     </Col>
                 </Row>
             </Modal>
