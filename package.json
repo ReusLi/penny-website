@@ -65,6 +65,7 @@
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "editor.md": "^1.5.0",
+    "jquery-file-upload-middleware": "^0.1.8",
     "karma-chai": "^0.1.0",
     "lodash": "^4.17.10",
     "log4js": "^3.0.6",
