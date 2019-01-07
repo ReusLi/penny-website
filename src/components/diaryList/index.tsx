@@ -56,7 +56,7 @@ export default class DiaryList extends React.Component<{}, {}> {
                 </Popconfirm>
             ]
             const source = require(`@images/yw/pic${i + 1}.jpg`)
-            const CoverImg = <img src={source} style={{ width: '100%' }} />
+            const coverImg = <img src={source} style={{ width: '100%' }} />
 
             cards.push(
                 <Row key={i}
@@ -70,8 +70,8 @@ export default class DiaryList extends React.Component<{}, {}> {
                         key={i}
                         hoverable={true}
                         className='diary-card'
-                        cover={CoverImg}
-                        actions = {this.state.hoverKey === i ? cardActions : null}
+                        cover={coverImg}
+                        actions={this.state.hoverKey === i ? cardActions : null}
                     >
                         <Meta
                             title={VO.title}
@@ -82,17 +82,15 @@ export default class DiaryList extends React.Component<{}, {}> {
             )
         }
 
-        if (cards.length === 0) {
-            cards.push(<EemptyTips key={new Date().getTime()} />)
-        }
+        cards.length === 0
+            ? cards.push(<EemptyTips key={new Date().getTime()} />)
+            : null;
 
         return cards;
     }
 
     setActionsShow(hoverKey: number) {
-        this.setState({
-            hoverKey: hoverKey
-        })
+        this.setState({ hoverKey })
     }
 
     private findDiary(): Promise<Array<DiaryVO>> {
