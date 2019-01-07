@@ -10,7 +10,7 @@ import diaryStore from 'store/diary'
 
 import { observer } from 'mobx-react'
 
-// import ImageCrop from 'components/imageCrop'
+import ImageCrop from 'components/imageCrop'
 
 const { TextArea } = Input;
 
@@ -31,12 +31,13 @@ export default class DiarySetting extends React.Component<{}, {}> {
             <Modal
                 title='详细信息'
                 style={{ top: 20 }}
+                width='90%'
                 visible={diaryStore.isShowSetting}
                 onCancel={() => diaryStore.setIsShowSetting(false)}
                 onOk={this.updateDiaryInfo.bind(this)}
             >
                 <Row>
-                    <Col span={24}>
+                    <Col span={6}>
                         <Form.Item
                             {...formItemLayout}
                             label='标题'
@@ -61,9 +62,9 @@ export default class DiarySetting extends React.Component<{}, {}> {
                             />
                         </Form.Item>
                     </Col>
-                    {/* <Col span={18}>
+                    <Col span={18}>
                         <ImageCrop></ImageCrop>
-                    </Col> */}
+                    </Col>
                 </Row>
             </Modal>
         )
