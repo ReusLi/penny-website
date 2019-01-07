@@ -19,6 +19,9 @@ const { Meta } = Card
 
 @observer
 export default class DiaryList extends React.Component<{}, {}> {
+    state = {
+        hoverKey: -1
+    }
     constructor() {
         super({})
     }
@@ -47,7 +50,9 @@ export default class DiaryList extends React.Component<{}, {}> {
                     cancelText="算了"
                     onConfirm={this.diaryDelete.bind(this, VO.id)}
                 >
-                    <Icon type="delete"/>
+                    <Icon
+                        type="delete"
+                    />
                 </Popconfirm>
             ]
             const source = require(`@images/yw/pic${i + 1}.jpg`)
@@ -60,10 +65,13 @@ export default class DiaryList extends React.Component<{}, {}> {
                     justify='center'
                 >
                     <Card
+                        onMouseEnter={this.setActionsShow.bind(this, i)}
+                        onMouseLeave={this.setActionsShow.bind(this, -1)}
                         key={i}
+                        hoverable={true}
                         className='diary-card'
                         cover={CoverImg}
-                        actions={cardActions}
+                        actions = {this.state.hoverKey === i ? cardActions : null}
                     >
                         <Meta
                             title={VO.title}
@@ -79,6 +87,12 @@ export default class DiaryList extends React.Component<{}, {}> {
         }
 
         return cards;
+    }
+
+    setActionsShow(hoverKey: number) {
+        this.setState({
+            hoverKey: hoverKey
+        })
     }
 
     private findDiary(): Promise<Array<DiaryVO>> {
