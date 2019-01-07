@@ -15,11 +15,6 @@ export default class NavBar extends React.Component {
                 <Col className={"top-col"}
                 >
                     <Link to="/">home</Link>
-                    <span style={{ marginLeft: '60px' }}
-                        onClick={this.onTestClick.bind(this)}
-                    >
-                        test
-                    </span>
                 </Col>
 
                 <Col span={4}>
@@ -35,9 +30,5 @@ export default class NavBar extends React.Component {
                 </Col>
             </Row>
         )
-    }
-
-    onTestClick() {
-
     }
 }
