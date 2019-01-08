@@ -1,6 +1,9 @@
 import * as React from 'react'
 
+import { Moment } from 'moment';
 import { Row, Col, Calendar, Button } from 'antd';
+
+import $http from 'utils/http'
 
 import { DiaryVO } from 'interface/diary'
 
@@ -29,13 +32,27 @@ export default class Dirays extends React.Component<{}, {}> {
         super({})
     }
 
+    async componentWillMount() {
+        const date = [
+            new Date().getFullYear(),
+            new Date().getMonth() + 1,
+            new Date().getDate()
+        ].join('-')
+        await this.findDiary(date)
+    }
+
     render() {
         return (
             <Row style={fullHeight}>
                 <Col span={6}>
                     <Row>
                         <div style={calendarStyle}>
-                            <Calendar fullscreen={false} style={{ background: '#fff' }} />
+                            <Calendar
+                                fullscreen={false}
+                                style={{ background: '#fff' }}
+                                onSelect={this.onCalendarSelect.bind(this)}
+                                onPanelChange={this.onPanelChange.bind(this)}
+                            />
                         </div>
                     </Row>
                     <Row
@@ -65,6 +82,35 @@ export default class Dirays extends React.Component<{}, {}> {
                 </Col>
             </Row>
         )
+    }
+
+    async onCalendarSelect(moment: Moment) {
+        const date = moment.format('YYYY-MM-DD')
+        await this.findDiary(date)
+    }
+
+    async onPanelChange(moment: Moment) {
+        const date = moment.format('YYYY-MM-DD')
+        await this.findDiary(date)
+    }
+
+    private findDiary(date: string): Promise<Array<DiaryVO>> {
+        return new Promise(async (resolve, reject) => {
+            const condition = {
+                where: {
+                    createTime: {
+                        gte: `${date} 00:00:00`,
+                        lte: `${date} 23:59:59`
+                    }
+                }
+            }
+            const result = await $http.post('/api/pyDiary/findAll', {
+                condition: condition
+            })
+            const data: Array<DiaryVO> = result.data
+            diaryStore.setDiaryList(data)
+            resolve(diaryStore.diaryList)
+        })
     }
 
     createDiary() {

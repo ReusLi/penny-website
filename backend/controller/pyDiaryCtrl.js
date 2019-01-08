@@ -4,7 +4,7 @@ const router = express.Router();
 const diaryDao = require('../dao/pyDiaryDao')
 
 router.post('/findAll', async (req, res, next) => {
-    const diaryList = await diaryDao.find();
+    const diaryList = await diaryDao.findByCondition(req.body.condition)
     res.json(diaryList)
 })
 

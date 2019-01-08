@@ -26,10 +26,6 @@ export default class DiaryList extends React.Component<{}, {}> {
         super({})
     }
 
-    async componentWillMount() {
-        await this.findDiary();
-    }
-
     private getCards() {
         const cardDatas: Array<DiaryVO> = diaryStore.diaryList
         let cards = [];
@@ -93,14 +89,7 @@ export default class DiaryList extends React.Component<{}, {}> {
         this.setState({ hoverKey })
     }
 
-    private findDiary(): Promise<Array<DiaryVO>> {
-        return new Promise(async (resolve, reject) => {
-            const result = await $http.post('/api/pyDiary/findAll')
-            const data: Array<DiaryVO> = result.data
-            diaryStore.setDiaryList(data)
-            resolve(diaryStore.diaryList)
-        })
-    }
+    
     private diarySetting(model: DiaryVO) {
         diaryStore.setCurDiaryModel(model)
         diaryStore.setIsShowSetting(true)
