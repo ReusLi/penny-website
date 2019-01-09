@@ -26,4 +26,10 @@ router.post('/update', async (req, res, next) => {
     res.json(result)
 })
 
+router.post('/findDiaryRecord', async (req, res, next) => {
+    const sql = `SELECT DATE_FORMAT (createTime, '%Y-%m-%d') AS date FROM py_diary WHERE userId = 'penny' GROUP BY DATE_FORMAT (createTime, '%Y-%m-%d')`;
+    const result = await diaryDao.doQuery(sql, [], 0)
+    res.json(result)
+})
+
 module.exports = router;

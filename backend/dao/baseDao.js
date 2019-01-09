@@ -77,7 +77,7 @@ const BaseDao = function (modelName) {
          * @param {Number} queryType
          */
         getQeuryType(type) {
-            const queryType = '';
+            let queryType = '';
             switch (type) {
                 case 0: queryType = sequelize.QueryTypes.SELECT; break; //查询
                 case 1: queryType = sequelize.QueryTypes.INSERT; break; //新增
