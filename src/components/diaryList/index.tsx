@@ -4,6 +4,8 @@ import { observer } from 'mobx-react'
 
 import { Row, Card, Icon, Popconfirm } from 'antd'
 
+import Scrollbars from 'react-custom-scrollbars'
+
 import $http from 'utils/http'
 
 import EemptyTips from './emptyTips'
@@ -24,6 +26,15 @@ export default class DiaryList extends React.Component<{}, {}> {
     }
     constructor() {
         super({})
+    }
+
+    render() {
+        const Cards = this.getCards()
+        return (
+            <Scrollbars>
+                {Cards}
+            </Scrollbars>
+        )
     }
 
     private getCards() {
@@ -89,7 +100,7 @@ export default class DiaryList extends React.Component<{}, {}> {
         this.setState({ hoverKey })
     }
 
-    
+
     private diarySetting(model: DiaryVO) {
         diaryStore.setCurDiaryModel(model)
         diaryStore.setIsShowSetting(true)
@@ -115,16 +126,5 @@ export default class DiaryList extends React.Component<{}, {}> {
                 : null
             resolve(isDeleteSuccess)
         })
-    }
-
-    render() {
-        const Cards = this.getCards()
-        return (
-            <Row type='flex'
-                justify='center'
-                className='diary-list'>
-                {Cards}
-            </Row>
-        )
     }
 }
