@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Moment } from 'moment';
 import { Calendar, Badge } from 'antd';
 
-import { findDiaryByDate } from './diarySerivce'
+import { findDiaryByDate, findDiaryRecord } from './diarySerivce'
 // 日期样式
 const calendarStyle = {
     marginLeft: '18px',
@@ -13,7 +13,15 @@ const calendarStyle = {
     borderRadius: 4
 }
 
-export default class DiaryCalendar extends React.Component {
+interface State {
+    diaryRecord: Array<string>
+}
+
+export default class DiaryCalendar extends React.Component<{}, State> {
+    state: State = {
+        diaryRecord: []
+    }
+
     render() {
         return (
             <div style={calendarStyle}>
@@ -28,10 +36,17 @@ export default class DiaryCalendar extends React.Component {
         )
     }
 
+    async componentWillMount() {
+        const data: Array<any> = await findDiaryRecord()
+        const diaryRecord = data.map(item => item.date)
+        this.setState({
+            diaryRecord: diaryRecord
+        })
+    }
+
     cellRender(date: Moment) {
         let cellDate: number | string = date.date()
         cellDate < 10 ? cellDate = `0${cellDate}` : null
-
         // 带badge的日期
         const badgeDate = (
             <Badge status="success" style={{ right: '-5px' }}>
@@ -47,9 +62,15 @@ export default class DiaryCalendar extends React.Component {
                 {cellDate}
             </div>
         )
+
+        const cellFormatDate = date.format('YYYY-MM-DD')
         return (
             <div className="ant-fullcalendar-date">
-                {normalDate}
+                {
+                    this.state.diaryRecord.indexOf(cellFormatDate) !== -1
+                        ? badgeDate
+                        : normalDate
+                }
                 <div className="ant-fullcalendar-content"></div>
             </div>
         )

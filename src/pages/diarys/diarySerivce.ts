@@ -26,3 +26,14 @@ export const findDiaryByDate = (date: string): Promise<Array<DiaryVO>> => {
         resolve(diaryStore.diaryList)
     })
 }
+
+/**
+ * 根据日期记录
+ */
+export const findDiaryRecord = (): Promise<Array<string>> => {
+    return new Promise(async (resolve, reject) => {
+        const result = await $http.post('/api/pyDiary/findDiaryRecord')
+        const data: Array<string> = result.data
+        resolve(data)
+    })
+}
