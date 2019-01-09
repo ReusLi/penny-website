@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "@types/react": "^16.3.13",
+    "@types/react-custom-scrollbars": "^4.0.5",
     "@types/react-dom": "^16.0.5",
     "@types/react-image-crop": "^3.0.1",
     "@types/react-router-dom": "^4.3.1",
@@ -78,6 +79,7 @@
     "ory-editor": "^0.6.0",
     "pinyin": "^2.8.3",
     "react-ace": "^6.1.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-froala-wysiwyg": "^2.9.1",
     "react-image-crop": "^6.0.10",
     "react-monaco-editor": "^0.17.2",
