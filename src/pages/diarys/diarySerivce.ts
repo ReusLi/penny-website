@@ -37,3 +37,20 @@ export const findDiaryRecord = (): Promise<Array<string>> => {
         resolve(data)
     })
 }
+
+/**
+ * 新增日记
+ */
+export const addDiary = (diaryVO: DiaryVO): Promise<DiaryVO> => {
+    return new Promise(async (resolve, reject) => {
+        const result = await $http.post('/api/pyDiary/add', {
+            diaryVO: diaryVO
+        })
+        const data: DiaryVO = result.data
+        resolve(data)
+    })
+}
+
+/**
+ * 更新日记
+ */
