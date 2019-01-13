@@ -9,14 +9,11 @@ import { addDiary } from 'pages/diarys/diarySerivce'
 
 class diaryStore {
     constructor() {
-        when(
-            () => {
-                return !this.isShowSetting && this.curDiaryModel.title !== ''
-            },
-            () => {
+        autorun(() => {
+            if (!this.isShowSetting && this.curDiaryModel.title !== '' && this.curDiaryModel.id === '') {
                 this.addDiary()
             }
-        )
+        })
     }
 
     @observable curDiaryModel: DiaryVO = {
