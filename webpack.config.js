@@ -116,6 +116,7 @@ module.exports = {
             'interface': path.resolve(__dirname, 'src/interface'),
             'utils': path.resolve(__dirname, 'src/utils'),
             'store': path.resolve(__dirname, 'src/store'),
+            'serivce': path.resolve(__dirname, 'src/serivce'),
             '@images': path.resolve(__dirname, 'images')
         },
         extensions: ['.tsx', '.ts', '.js', '.jsx']

@@ -25,7 +25,8 @@
                 "components/*",
                 "interface/*",
                 "utils/*",
-                "store/*"
+                "store/*",
+                "serivce/*"
             ]
         }
         
