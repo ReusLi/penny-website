@@ -40,6 +40,8 @@ export const findDiaryRecord = (): Promise<Array<string>> => {
 
 /**
  * 新增日记
+ * 
+ * @return {DiaryVO} 新增日记VO
  */
 export const addDiary = (diaryVO: DiaryVO): Promise<DiaryVO> => {
     return new Promise(async (resolve, reject) => {
@@ -53,4 +55,15 @@ export const addDiary = (diaryVO: DiaryVO): Promise<DiaryVO> => {
 
 /**
  * 更新日记
+ * 
+ * @return {number} 更新的记录数
  */
+export const updateDiary = (diaryVO: DiaryVO): Promise<number> => {
+    return new Promise(async (resolve, reject) => {
+        const result = await $http.post('/api/pyDiary/update', {
+            diaryVO: diaryVO
+        })
+        const updateRow: number = result.data[0]
+        resolve(updateRow)
+    })
+ }

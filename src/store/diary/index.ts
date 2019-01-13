@@ -5,7 +5,7 @@ import appHistory from 'store/route'
 
 import { DiaryVO } from 'interface/diary'
 
-import { addDiary } from 'pages/diarys/diarySerivce'
+import { addDiary } from 'serivce/diary'
 
 class diaryStore {
     constructor() {

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Moment } from 'moment';
 import { Calendar, Badge } from 'antd';
 
-import { findDiaryByDate, findDiaryRecord } from './diarySerivce'
+import { findDiaryByDate, findDiaryRecord } from 'serivce/diary'
 // 日期样式
 const calendarStyle = {
     marginLeft: '18px',

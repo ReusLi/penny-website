@@ -7,7 +7,7 @@ import editorStore from 'store/editor'
 
 import { DiaryVO } from 'interface/diary'
 
-import $http from 'utils/http'
+import { updateDiary } from 'serivce/diary'
 
 export default class SaveButton extends React.Component<{}, {}> {
     render() {
@@ -32,15 +32,14 @@ export default class SaveButton extends React.Component<{}, {}> {
         diaryVO.updateTime = new Date().toDateString()
         diaryVO.content = editorStore.getValue()
 
-        diaryStore.setCurDiaryModel(diaryVO)
+        const updateRow: number = await updateDiary(diaryVO)
 
-        const result = await $http.post('/api/pyDiary/update', {
-            diaryVO: diaryVO
-        })
-        const updateRow: number = result.data[0]
-        updateRow === 1
-            ? message.success('保存成功')
-            : message.warning('没有变更, 不需要保存')
+        if (updateRow === 1) {
+            diaryStore.setCurDiaryModel(diaryVO)
+            message.success('保存成功')
+        } else {
+            message.warning('没有变更, 不需要保存')
+        }
     }
 
 }

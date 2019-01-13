@@ -7,7 +7,7 @@ import { DiaryVO } from 'interface/diary'
 import DiaryCalendar from './diaryCalendar'
 import DiaryList from 'components/diaryList'
 
-import { findDiaryByDate } from './diarySerivce'
+import { findDiaryByDate } from 'serivce/diary'
 
 import appHistory from 'store/route'
 import diaryStore from 'store/diary'
