@@ -7,6 +7,8 @@ import { DiaryVO } from 'interface/diary'
 
 import { addDiary } from 'serivce/diary'
 
+import diaryUtil from 'utils/diary'
+
 class diaryStore {
     constructor() {
         autorun(() => {
@@ -16,32 +18,26 @@ class diaryStore {
         })
     }
 
-    @observable curDiaryModel: DiaryVO = {
-        id: '',
-        title: '',
-        userId: '',
-        desc: '',
-        content: '',
-        createTime: '',
-        updateTime: ''
-    }
+    @observable curDiaryModel: DiaryVO = diaryUtil.getDiaryVO()
 
     @observable diaryList: Array<DiaryVO> = []
 
     @observable isShowSetting: boolean = false
 
-    @action('更新当前日记Model值') setCurDiaryModel(curDiaryModel: DiaryVO) {
-        this.curDiaryModel = curDiaryModel
+    @action('更新当前日记Model值')
+    updateCurDiaryModel(model: DiaryVO) {
+        this.curDiaryModel = Object.assign(this.curDiaryModel, model)
     }
 
-    @action('设置日记List') setDiaryList(diaryList: Array<DiaryVO>) {
+    @action('设置日记List')
+    setDiaryList(diaryList: Array<DiaryVO>) {
         this.diaryList = diaryList
     }
 
-    @action('显示设置日记的modal面板') setIsShowSetting(isShowSetting: boolean) {
+    @action('显示设置日记的modal面板')
+    setIsShowSetting(isShowSetting: boolean) {
         this.isShowSetting = isShowSetting
     }
-
 
     isModifyMode() {
         const search = appHistory.location.search
@@ -49,13 +45,19 @@ class diaryStore {
     }
 
     async addDiary() {
-        let diaryVO: DiaryVO = this.curDiaryModel
-        diaryVO.id = String(new Date().getTime())
-        diaryVO.userId = 'penny'
-        diaryVO.createTime = diaryVO.updateTime = new Date().toJSON()
-        diaryVO.content = editorStore.getValue()
+        const curTime: string = new Date().toJSON()
+        const model: DiaryVO = {
+            id: String(new Date().getTime()),
+            userId: 'penny',
+            createTime: curTime,
+            updateTime: curTime,
+            content: editorStore.getValue()
+        }
 
-        const model: DiaryVO = await addDiary(diaryVO)
+        this.updateCurDiaryModel(model)
+
+        await addDiary(this.curDiaryModel)
+
         this.addDiaryToList(model)
         appHistory.push({
             pathname: '/write-dirays',
@@ -63,10 +65,12 @@ class diaryStore {
         })
     }
 
+    @action('加一个DiaryVO到DiaryList里面')
     addDiaryToList(diaryModel: DiaryVO) {
         this.diaryList.unshift(diaryModel)
     }
 
+    @action('更新DiaryList里面的DiaryVO')
     updateDiaryList(diaryModel: DiaryVO) {
         this.diaryList = this.diaryList.map(diary => {
             diary.id === diaryModel.id

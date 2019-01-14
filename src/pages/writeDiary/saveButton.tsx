@@ -28,14 +28,16 @@ export default class SaveButton extends React.Component<{}, {}> {
     }
 
     private async updateDiary() {
-        let diaryVO: DiaryVO = diaryStore.curDiaryModel
-        diaryVO.updateTime = new Date().toDateString()
-        diaryVO.content = editorStore.getValue()
+        const model = {
+            updateTime: new Date().toDateString(),
+            content: editorStore.getValue()
+        }
 
-        const updateRow: number = await updateDiary(diaryVO)
+        diaryStore.updateCurDiaryModel(model)
+        
+        const updateRow: number = await updateDiary(diaryStore.curDiaryModel)
 
         if (updateRow === 1) {
-            diaryStore.setCurDiaryModel(diaryVO)
             message.success('保存成功')
         } else {
             message.warning('没有变更, 不需要保存')

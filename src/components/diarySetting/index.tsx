@@ -93,14 +93,12 @@ export default class DiarySetting extends React.Component<{}, {}> {
 
     async updateDiaryInfo() {
         // 更新curDiaryModel
-        let curDiaryModel: DiaryVO = diaryStore.curDiaryModel
-        curDiaryModel = Object.assign(curDiaryModel, this.state)
-        diaryStore.setCurDiaryModel(curDiaryModel)
+        diaryStore.updateCurDiaryModel(this.state)
 
         await $http.post('api/pyDiary/update', {
-            diaryVO: curDiaryModel
+            diaryVO: diaryStore.curDiaryModel
         })
-        diaryStore.updateDiaryList(curDiaryModel)
+        diaryStore.updateDiaryList(diaryStore.curDiaryModel)
         diaryStore.setIsShowSetting(false)
     }
 }

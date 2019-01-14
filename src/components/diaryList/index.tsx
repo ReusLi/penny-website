@@ -102,12 +102,12 @@ export default class DiaryList extends React.Component<{}, {}> {
 
 
     private diarySetting(model: DiaryVO) {
-        diaryStore.setCurDiaryModel(model)
+        diaryStore.updateCurDiaryModel(model)
         diaryStore.setIsShowSetting(true)
     }
 
     private diaryEdit(model: DiaryVO) {
-        diaryStore.setCurDiaryModel(model)
+        diaryStore.updateCurDiaryModel(model)
 
         appHistory.push({
             pathname: '/write-dirays',

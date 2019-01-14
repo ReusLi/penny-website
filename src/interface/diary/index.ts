@@ -1,9 +1,9 @@
 export interface DiaryVO {
-    id: string,
-    userId: string,
-    title: string,
+    id?: string,
+    userId?: string,
+    title?: string,
     desc?: string,
-    content: string,
-    createTime: string,
-    updateTime: string
+    content?: string,
+    createTime?: string,
+    updateTime?: string
 }

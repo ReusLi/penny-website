@@ -12,6 +12,8 @@ import { findDiaryByDate } from 'serivce/diary'
 import appHistory from 'store/route'
 import diaryStore from 'store/diary'
 
+import diaryUtil from 'utils/diary'
+
 // import './datePicker.css'
 
 const fullHeight = {
@@ -69,16 +71,9 @@ export default class Dirays extends React.Component<{}, {}> {
     }
 
     createDiary() {
-        const diaryVO: DiaryVO = {
-            id: '',
-            title: '',
-            userId: '',
-            desc: '',
-            content: '',
-            createTime: '',
-            updateTime: ''
-        }
-        diaryStore.setCurDiaryModel(diaryVO)
+        const diaryVO: DiaryVO = diaryUtil.getDiaryVO()
+
+        diaryStore.updateCurDiaryModel(diaryVO)
         appHistory.push('write-dirays')
     }
 }
