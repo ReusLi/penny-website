@@ -43,9 +43,9 @@ class diaryStore {
 
     @computed get curDiaryModelClone(): DiaryVO {
         let cloneVO: DiaryVO = {}
-        Object.assign(this.curDiaryModel).forEach((key: string) => {
+        Object.keys(this.curDiaryModel).forEach((key: string) => {
             cloneVO[key] = this.curDiaryModel[key]
-        });
+        })
         return cloneVO
     }
 
