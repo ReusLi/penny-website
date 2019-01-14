@@ -31,6 +31,7 @@ export default class DiaryCalendar extends React.Component<{}, State> {
                     onSelect={this.onCalendarSelect.bind(this)}
                     onPanelChange={this.onPanelChange.bind(this)}
                     dateFullCellRender={this.cellRender.bind(this)}
+                    disabledDate={this.disabledDate.bind(this)}
                 />
             </div>
         )
@@ -84,5 +85,18 @@ export default class DiaryCalendar extends React.Component<{}, State> {
     async onPanelChange(moment: Moment) {
         const date = moment.format('YYYY-MM-DD')
         await findDiaryByDate(date)
+    }
+
+    /**
+     * 控制写日记的时间只能到今天为止
+     * @param currentDate 日历cell的日期对象
+     * 
+     * @return {boolean} 是否禁用日历cell
+     */
+    disabledDate(currentDate: Moment) {
+        const curTimeStamp = new Date().getTime(),
+            dateTimeStamp = currentDate.valueOf()
+
+        return dateTimeStamp > curTimeStamp
     }
 }
