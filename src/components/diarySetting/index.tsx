@@ -46,7 +46,7 @@ export default class DiarySetting extends React.Component<{}, {}> {
                             hasFeedback
                         >
                             <Input
-                                value={this.state.title || diaryStore.curDiaryModel.title}
+                                value={diaryStore.curDiaryModelClone.title}
                                 size="large"
                                 onChange={this.updateState.bind(this, 'title')}
                             />
@@ -58,7 +58,7 @@ export default class DiarySetting extends React.Component<{}, {}> {
                             hasFeedback
                         >
                             <TextArea
-                                value={this.state.desc ||diaryStore.curDiaryModel.desc}
+                                value={diaryStore.curDiaryModelClone.desc}
                                 autosize={{ minRows: 4, maxRows: 6 }}
                                 onChange={this.updateState.bind(this, 'desc')}
                             />
@@ -77,13 +77,13 @@ export default class DiarySetting extends React.Component<{}, {}> {
         const value = e.target.value
         switch (key) {
             case 'title': {
-                this.setState({
+                diaryStore.updateCurDiaryModel({
                     title: value
                 })
                 break;
             }
             case 'desc': {
-                this.setState({
+                diaryStore.updateCurDiaryModel({
                     desc: value
                 })
                 break;
@@ -92,13 +92,10 @@ export default class DiarySetting extends React.Component<{}, {}> {
     }
 
     async updateDiaryInfo() {
-        // 更新curDiaryModel
-        diaryStore.updateCurDiaryModel(this.state)
-
         await $http.post('api/pyDiary/update', {
-            diaryVO: diaryStore.curDiaryModel
+            diaryVO: diaryStore.curDiaryModelClone
         })
-        diaryStore.updateDiaryList(diaryStore.curDiaryModel)
+        diaryStore.updateDiaryList(diaryStore.curDiaryModelClone)
         diaryStore.setIsShowSetting(false)
     }
 }

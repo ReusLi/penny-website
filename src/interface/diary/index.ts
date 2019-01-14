@@ -5,5 +5,6 @@ export interface DiaryVO {
     desc?: string,
     content?: string,
     createTime?: string,
-    updateTime?: string
+    updateTime?: string,
+    [index: string]: string;
 }

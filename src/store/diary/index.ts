@@ -1,4 +1,4 @@
-import { observable, action, reaction, autorun, when, toJS } from 'mobx';
+import { observable, action, reaction, autorun, when, toJS, computed } from 'mobx';
 
 import editorStore from 'store/editor'
 import appHistory from 'store/route'
@@ -26,7 +26,9 @@ class diaryStore {
 
     @action('更新当前日记Model值')
     updateCurDiaryModel(model: DiaryVO) {
-        this.curDiaryModel = Object.assign(this.curDiaryModel, model)
+        Object.keys(model).forEach((key: string) => {
+            this.curDiaryModel[key] = model[key]
+        })
     }
 
     @action('设置日记List')
@@ -37,6 +39,14 @@ class diaryStore {
     @action('显示设置日记的modal面板')
     setIsShowSetting(isShowSetting: boolean) {
         this.isShowSetting = isShowSetting
+    }
+
+    @computed get curDiaryModelClone(): DiaryVO {
+        let cloneVO: DiaryVO = {}
+        Object.assign(this.curDiaryModel).forEach((key: string) => {
+            cloneVO[key] = this.curDiaryModel[key]
+        });
+        return cloneVO
     }
 
     isModifyMode() {
