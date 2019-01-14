@@ -90,6 +90,7 @@ class diaryStore {
         })
     }
 
+    @action('删除DiaryList里面的DiaryVO')
     removeDiary(id: string) {
         this.diaryList = this.diaryList.filter(diary => diary.id !== id)
     }
