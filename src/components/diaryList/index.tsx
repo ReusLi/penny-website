@@ -28,6 +28,9 @@ export default class DiaryList extends React.Component<{}, {}> {
         super({})
     }
 
+    /**
+     * 渲染
+     */
     render() {
         const Cards = this.getCards()
         return (
@@ -37,7 +40,12 @@ export default class DiaryList extends React.Component<{}, {}> {
         )
     }
 
-    private getCards() {
+    /**
+     * 获取卡片list
+     * 
+     * @return {arrya} 卡片list
+     */
+    private getCards(): Array<any> {
         const cardDatas: Array<DiaryVO> = diaryStore.diaryList
         let cards = [];
 
@@ -96,16 +104,28 @@ export default class DiaryList extends React.Component<{}, {}> {
         return cards;
     }
 
+    /**
+     * 设置要展示actions的卡片下标
+     * 鼠标移入卡片时, actions才会展示出来
+     * @param hoverKey 
+     */
     setActionsShow(hoverKey: number) {
         this.setState({ hoverKey })
     }
 
-
+    /**
+     * 打开日记设置信息
+     * @param model 
+     */
     private diarySetting(model: DiaryVO) {
         diaryStore.updateCurDiaryModel(model)
         diaryStore.setIsShowSetting(true)
     }
 
+    /**
+     * 编辑日记
+     * @param model 
+     */
     private diaryEdit(model: DiaryVO) {
         diaryStore.updateCurDiaryModel(model)
 
@@ -115,6 +135,10 @@ export default class DiaryList extends React.Component<{}, {}> {
         });
     }
 
+    /**
+     * 删除日记
+     * @param id 
+     */
     private diaryDelete(id: string): Promise<boolean> {
         return new Promise(async (resolve, reject) => {
             const result = await $http.post('/api/pyDiary/delete', {
