@@ -11,7 +11,8 @@ const BaseDao = function (modelName) {
         constructor(...args) {
             super(...args)
         }
-        find(limit, offset) {
+
+        static find(limit, offset) {
             return new Promise(function (resolve, reject) {
                 entityObj.findAll({
                     limit: parseInt(limit) || 9999, //默认查询10条
@@ -25,7 +26,7 @@ const BaseDao = function (modelName) {
             )
         }
 
-        findByCondition(condition, order) {
+        static findByCondition(condition, order) {
             return new Promise(function (resolve, reject) {
                 entityObj.findAll(condition, null, { raw: true }).then(function (result) {
                     resolve(result);
@@ -35,7 +36,7 @@ const BaseDao = function (modelName) {
             })
         }
 
-        findById(id, callback) {
+        static findById(id, callback) {
             return new Promise(function (resolve, reject) {
                 entityObj.findById(id).then(function (result) {
                     resolve(result);
@@ -44,7 +45,7 @@ const BaseDao = function (modelName) {
                 })
             })
         }
-        create(entity, callback) {
+        static create(entity, callback) {
             return new Promise(function (resolve, reject) {
                 entityObj.create(entity).then(function (result) {
                     resolve(result);
@@ -53,7 +54,7 @@ const BaseDao = function (modelName) {
                 })
             })
         }
-        update(entity) {
+        static update(entity) {
             return new Promise(function (resolve, reject) {
                 entityObj.update(entity, { where: { id: entity.id } }).then(function (result) {
                     resolve(result);
@@ -62,7 +63,7 @@ const BaseDao = function (modelName) {
                 })
             })
         }
-        delete(id) {
+        static delete(id) {
             return new Promise(function (resolve, reject) {
                 entityObj.destroy({ where: { id: id } }).then(function (result) {
                     resolve(result);
@@ -76,7 +77,7 @@ const BaseDao = function (modelName) {
          * 通过query方法可以传入增、删、改sql
          * @param {Number} queryType
          */
-        getQeuryType(type) {
+        static getQeuryType(type) {
             let queryType = '';
             switch (type) {
                 case 0: queryType = sequelize.QueryTypes.SELECT; break; //查询
@@ -97,7 +98,7 @@ const BaseDao = function (modelName) {
          * @param {Array} params 查询参数
          * @param {Number} queryType 查询类型，0:SELECT、1:INSERT、2:UPDATE、3:DELETE等
          */
-        doQuery(sql, params, queryType) {
+        static doQuery(sql, params, queryType) {
             const type = this.getQeuryType(queryType);
             return new Promise(function (resolve, reject) {
                 sequelize.query(
@@ -113,7 +114,7 @@ const BaseDao = function (modelName) {
         /**
          * 执行新增回调.
          */
-        doAdd(entity) {
+        static doAdd(entity) {
             return new Promise(function (resolve, reject) {
                 entityObj.create(entity).then(function (result) {
                     resolve(result);
@@ -125,7 +126,7 @@ const BaseDao = function (modelName) {
         /**
          * 执行删除回调.
          */
-        doDelete(condition) {
+        static doDelete(condition) {
             return new Promise(function (resolve, reject) {
                 entityObj.destroy({ where: condition }).then(function (result) {
                     resolve(result);
@@ -137,7 +138,7 @@ const BaseDao = function (modelName) {
         /**
          * 执行更新回调.
          */
-        doUpdate(entity, condition) {
+        static doUpdate(entity, condition) {
             return new Promise(function (resolve, reject) {
                 entityObj.update(entity, { 'where': condition }).then(function (result) {
                     resolve(result);
@@ -152,7 +153,6 @@ const BaseDao = function (modelName) {
 }
 
 module.exports = function (modelName) {
-    const a = new BaseDao(modelName);
-    return a
+    return new BaseDao(modelName)
 }
 

@@ -6,4 +6,4 @@ class pyUserDao extends dao {
     }
 }
 
-module.exports = new pyUserDao()
+module.exports = pyUserDao

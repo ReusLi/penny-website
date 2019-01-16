@@ -6,4 +6,4 @@ class pyDiaryDao extends dao {
     }
 }
 
-module.exports = new pyDiaryDao()
+module.exports = pyDiaryDao
