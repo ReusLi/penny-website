@@ -4,7 +4,6 @@ const TsParser = require('typescript-parser')
 const parser = new TsParser.TypescriptParser();
 
 const outputpath = path.join(__dirname, 'src/diaryList.md')
-TsParser.ClassDeclaration
 
 class makeDocuments {
   async do(pathList) {
