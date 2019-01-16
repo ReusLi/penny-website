@@ -8,8 +8,8 @@ const BaseDao = function (modelName) {
     const entityObj = sequelize.import(`../models/entity/${modelName}`);
 
     class dao extends entityObj {
-        constructor() {
-            super()
+        constructor(...args) {
+            super(...args)
         }
         find(limit, offset) {
             return new Promise(function (resolve, reject) {

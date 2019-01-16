@@ -7,6 +7,8 @@ const logger = require('./config/log');
 const app = express();
 const compression = require('compression');
 
+const timer = require('./timer')
+
 //增加压缩缓存gzip
 app.use(compression());
 
@@ -47,5 +49,11 @@ app.use(function (err, req, res, next) {
 
 
 logger.info("服务启动成功……,端口号为:" + config.serverPort);
+
+logger.info('启动定时任务');
+
+setTimeout(() => {
+    timer.runAllTimer();
+}, 3000)
 
 module.exports = app;
