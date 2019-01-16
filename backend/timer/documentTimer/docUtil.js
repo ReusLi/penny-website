@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const uuid = require('uuid')
 const TsParser = require('typescript-parser')
 const parser = new TsParser.TypescriptParser();
 // 输出路径
@@ -31,7 +32,7 @@ class DocUtil {
 
         methods.forEach((method, index) => {
             table.push({
-                id: index,
+                id: uuid(),
                 name: method.name,
                 return: method.type === undefined ? 'void' : this.handleltgt(method.type),
                 comment: this.handleComment(method.jsDoc),

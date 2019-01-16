@@ -19,6 +19,15 @@ class DocTimer {
         // 存入数据库
         const addResult = docDao.bulkCreate(docModels)
     }
+
+    /**
+     * 获取前端代码文件路径
+     * 
+     * @return {array<string>}
+     */
+    findFilePaths() {
+
+    }
 }
 
 module.exports = new DocTimer()
