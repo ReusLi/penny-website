@@ -52,8 +52,6 @@ logger.info("服务启动成功……,端口号为:" + config.serverPort);
 
 logger.info('启动定时任务');
 
-setTimeout(() => {
-    timer.runAllTimer();
-}, 3000)
+timer.runAllTimer();
 
 module.exports = app;

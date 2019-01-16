@@ -17,7 +17,7 @@ class DocTimer {
         // 用babel遍历前端src, 整理出文档
         const docModels = await docUtil.findDocModel(pathList)
         // 存入数据库
-        const addResult = docDao.bulkCreate(docModels)
+        await docDao.bulkCreate(docModels)
     }
 
     /**
@@ -25,7 +25,7 @@ class DocTimer {
      * 
      * @return {array<string>}
      */
-    findFilePaths() {
+    recursiveFolder() {
 
     }
 }
