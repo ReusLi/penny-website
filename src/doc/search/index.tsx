@@ -13,13 +13,13 @@ export default class Search extends React.Component {
                 justify="end"
             >
                 <Col>
-                    <Mention
+                    {/* <Mention
                         style={{ width: '100%' }}
                         onChange={this.onChange.bind(this)}
                         defaultValue={toContentState('@afc163')}
                         defaultSuggestions={['afc163', 'benjycui', 'yiminghe', 'RaoHai', '中文', 'にほんご']}
                         onSelect={this.onSelect.bind(this)}
-                    />
+                    /> */}
                 </Col>
             </Row>
         )
