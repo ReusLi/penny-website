@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const TsParser = require('typescript-parser')
+const TsParser2 = require('typescript')
 const parser = new TsParser.TypescriptParser();
 const uuid = require('uuid')
 
@@ -31,8 +32,9 @@ class makeDocuments {
             for (let i = 0; i < pathList.length; i++) {
                 const path = pathList[i];
                 const code = fs.readFileSync(path, 'utf-8')
-                const ast = await parser.parseSource(code, 4);
+                const ast = await parser.parseSource(code, 3);
 
+                const ast2 = await parser.parseFile('elementDoc/element-ui/types/alert.d.ts', __dirname)
                 ast.declarations.forEach(declaration => {
                     declaration instanceof TsParser.ClassDeclaration
                         ? this.makeProps(declaration)

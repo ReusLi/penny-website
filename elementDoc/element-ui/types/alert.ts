@@ -1,5 +1,8 @@
 import { ElementUIComponent } from './component'
 
+const a = 1
+
+
 export type AlertType = 'success' | 'warning' | 'info' | 'error'
 
 /** Alert Component */
