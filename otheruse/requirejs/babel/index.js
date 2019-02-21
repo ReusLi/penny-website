@@ -1,0 +1,2 @@
+const babel = require('babel')
+
