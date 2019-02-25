@@ -9,9 +9,9 @@ require(['jquery'], function($) {
         },
 
         bindEvent: function() {
-            $('#btn_1').on('click', function() {
-                window.open('www.reusli.com')
-            })
+            /** aaaa */
+            window.open('www.reusli.com')
+            /** aaaa */
 
             /** bbbb */
             utils.open({
