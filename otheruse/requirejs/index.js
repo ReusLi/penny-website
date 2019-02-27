@@ -13,12 +13,26 @@ const fileContent = fs.readFileSync(filePath, 'utf-8')
 
 
 const visitor1 = {
-    CallExpression(NodePath, PluginPass) {
-        console.log(...arguments)
+    ObjectExpression(NodePath, PluginPass) {
+        let bindEventValue = null;
+        NodePath.node.properties.forEach(propertie => {
+            propertie.key.name === 'bindEvent'
+                ? bindEventValue = propertie.value
+                : null
+        });
 
-        // #btn_1
-        NodePath.node.callee.object.arguments[0].value
-        debugger
+        // 找到 bindEvent 节点
+        if (bindEventValue) {
+            const BlockStatementBody = bindEventValue.body.body
+
+            BlockStatementBody.forEach(node => {
+                console.log(node)
+
+                node.expression
+            });
+
+            debugger
+        }
     }
 }
 
