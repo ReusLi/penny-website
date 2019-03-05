@@ -70,7 +70,7 @@ const opt = {
     /**
      * 在返回的 source map 上设置 sources[0]
      */
-    sourceFileName,
+    sourceFileName: '',
     /**
      * 设置为true以使用 'json' 运行jsesc: true以打印 '\ u00A9' 与 '©' ;
      */
