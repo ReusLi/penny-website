@@ -36,36 +36,8 @@ const visitor1 = {
     }
 }
 
-const visitor2 = {
-    IfStatement: {
-        enter(a, b, c) {
-            console.log('enter---')
-        },
-        exit() {
-            console.log('---exit')
-        }
-    }
-}
-
 const astNode = babel.transform(fileContent, {
     plugins: [{
         visitor: visitor1
-    }, {
-        visitor: visitor2
     }]
 })
-
-
-// traverse(astNode.ast, {
-//     enter(path) {
-//         if (path.isExpressionStatement()) {
-//             console.log(path.node.start)
-//         }
-//         if (path.isIdentifier({ name: 'test' })) {
-//             console.dir(path.node)
-//         }
-//         if (path.isFunction()) {
-//             console.dir(path.node)
-//         }
-//     }
-// })
