@@ -16,8 +16,20 @@ const filePath = path.join(__dirname, 'source', 'test.js')
 const fileContent = fs.readFileSync(filePath, 'utf-8')
 
 const opt = {
-    auxiliaryCommentBefore:  'auxiliaryCommentBefore',
-    auxiliaryCommentAfter: 'auxiliaryCommentAfter',
+    /**
+     * 在所有非用户编写代码后附加注释。
+     */
+    auxiliaryCommentBefore: '在所有非用户编写代码后附加注释。',
+    /**
+     * 在所有非用户编写代码前附加注释。
+     */
+    auxiliaryCommentAfter: '在所有非用户编写代码前附加注释。',
+    /**
+     * 一个可选的回调，控制是否需要输出注释。
+     * 具体调用为 shouldPrintComment(commentContents) 。 
+     * 注意: 该选项使用时会覆盖 comment 选项。
+     */
+    shouldPrintComment: () => { return false },
     /**
      * 是否输出注释
      */
