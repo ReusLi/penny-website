@@ -6,7 +6,11 @@ const _ = require('lodash')
 const babel = require('babel-core')
 const babeltraverse = require('babel-traverse')
 
-const generate = require('babel-generator').default;
+const generate = require('babel-generator').default
+
+const template = require('babel-template')
+
+const t = require('babel-types')
 
 // traverse, Visitor
 const traverse = babeltraverse.default
@@ -77,6 +81,17 @@ const opt = {
     jsonCompatibleStrings: false
 }
 
+const TEMP = template(`
+$('#btn_1').on('click', function() {
+    utils.open({
+        url: 'wwww.penny.com',
+        isFrame: false
+    })
+})
+`)
+
+
+let bindEventPath
 const visitor1 = {
     ObjectExpression(NodePath, PluginPass) {
         let bindEventValue = null;
@@ -94,6 +109,8 @@ const visitor1 = {
                 const { map, code } = generate(node, opt)
                 console.log(code)
             });
+
+            bindEventPath = NodePath
         }
     }
 }
@@ -105,3 +122,16 @@ const astNode = babel.transform(fileContent, {
         visitor: visitor1
     }]
 })
+
+
+const ast = TEMP()
+try {
+    bindEventPath.insertAfter(ast);
+} catch (e) {
+    console.log(e)
+    debugger
+}
+
+const newCode = generate(astNode).code;
+console.log(newCode)
+debugger
