@@ -129,9 +129,7 @@ try {
     bindEventPath.insertAfter(ast);
 } catch (e) {
     console.log(e)
-    debugger
 }
 
 const newCode = generate(astNode).code;
 console.log(newCode)
-debugger
