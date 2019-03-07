@@ -83,10 +83,8 @@ const opt = {
 
 const TEMP = template(`
 $('#btn_1').on('click', function() {
-    utils.open({
-        url: 'wwww.penny.com',
-        isFrame: false
-    })
+    // nothing
+    // just test comment for generate    
 })
 `)
 
