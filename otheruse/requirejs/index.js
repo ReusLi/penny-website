@@ -90,24 +90,6 @@ $('#btn_1').on('click', function() {
 
 
 const visitor1 = {
-    ObjectExpression(NodePath, PluginPass) {
-        let bindEventValue = null;
-        NodePath.node.properties.forEach(propertie => {
-            propertie.key.name === 'bindEvent'
-                ? bindEventValue = propertie.value
-                : null
-        });
-
-        // 找到 bindEvent 节点
-        if (bindEventValue) {
-            const BlockStatementBody = bindEventValue.body.body
-
-            BlockStatementBody.forEach(node => {
-                const { map, code } = generate(node, opt)
-            });
-        }
-    },
-    
     FunctionExpression(path) {
         if (path.parent.key && path.parent.key.name === 'bindEvent') {
             path.node.body.body.push(TEMP())
@@ -121,9 +103,6 @@ const astNode = babel.transform(fileContent, {
         visitor: visitor1
     }]
 })
-
-
-
 
 const newCode = generate(astNode.ast, opt).code;
 console.log(newCode)
