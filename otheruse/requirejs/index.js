@@ -105,10 +105,15 @@ const visitor1 = {
 
             BlockStatementBody.forEach(node => {
                 const { map, code } = generate(node, opt)
-                console.log(code)
             });
-
-            bindEventPath = NodePath
+        }
+    },
+    
+    FunctionExpression(path) {
+        if (path.parent.key && path.parent.key.name === 'bindEvent') {
+            // path.insertBefore(TEMP().expression);
+            path.node.body.body.push(TEMP())
+            // path.stop();
         }
     }
 }
@@ -122,12 +127,7 @@ const astNode = babel.transform(fileContent, {
 })
 
 
-const ast = TEMP()
-try {
-    bindEventPath.insertAfter(ast);
-} catch (e) {
-    console.log(e)
-}
 
-const newCode = generate(astNode).code;
+
+const newCode = generate(astNode.ast, opt).code;
 console.log(newCode)
