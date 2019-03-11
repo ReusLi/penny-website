@@ -89,7 +89,6 @@ $('#btn_1').on('click', function() {
 `)
 
 
-let bindEventPath
 const visitor1 = {
     ObjectExpression(NodePath, PluginPass) {
         let bindEventValue = null;
@@ -111,13 +110,10 @@ const visitor1 = {
     
     FunctionExpression(path) {
         if (path.parent.key && path.parent.key.name === 'bindEvent') {
-            // path.insertBefore(TEMP().expression);
             path.node.body.body.push(TEMP())
-            // path.stop();
         }
     }
 }
-
 
 
 const astNode = babel.transform(fileContent, {
