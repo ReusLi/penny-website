@@ -1,23 +1,22 @@
 const fs = require('fs')
 const path = require('path')
 
-const _ = require('lodash')
-
 const babel = require('babel-core')
 const babeltraverse = require('babel-traverse')
 
 const generate = require('babel-generator').default
-
 const template = require('babel-template')
 
-const t = require('babel-types')
+const filePath = path.join(__dirname, 'source', 'test.js')
+const fileContent = fs.readFileSync(filePath, 'utf-8')
 
+// 暂时没用到的库
+const _ = require('lodash')
+const t = require('babel-types')
 // traverse, Visitor
 const traverse = babeltraverse.default
 const visitors = babeltraverse.visitors
 
-const filePath = path.join(__dirname, 'source', 'test.js')
-const fileContent = fs.readFileSync(filePath, 'utf-8')
 
 const opt = {
     /**
@@ -88,21 +87,42 @@ $('#btn_1').on('click', function() {
 })
 `)
 
+let bodyConst;
 
-const visitor1 = {
+const visitor = {
     FunctionExpression(path) {
         if (path.parent.key && path.parent.key.name === 'bindEvent') {
             path.node.body.body.push(TEMP())
+
+            bodyConst = path.node.body.body
         }
     }
 }
 
-
 const astNode = babel.transform(fileContent, {
     plugins: [{
-        visitor: visitor1
+        visitor: visitor
     }]
 })
 
-const newCode = generate(astNode.ast, opt).code;
-console.log(newCode)
+// const newCode = generate(astNode.ast, opt).code;
+const judgeExpressionType = (node) => {
+    // #btn_1
+    node.expression.calle.object.arguments[0].value
+    // click
+    node.expression.arguments[0].value
+
+    // window
+    node.expression.arguments[1].body.body[0].expression.calle.object.name
+
+    // open
+    node.expression.arguments[1].body.body[0].expression.calle.object.property.name
+
+    // www.reusli.com
+    node.expression.arguments[1].body.body[0].expression.arguments[0].value
+    debugger
+}
+
+bodyConst.forEach(node => {
+    judgeExpressionType(node)
+});
