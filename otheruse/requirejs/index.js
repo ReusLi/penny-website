@@ -108,15 +108,15 @@ const astNode = babel.transform(fileContent, {
 // const newCode = generate(astNode.ast, opt).code;
 const judgeExpressionType = (node) => {
     // #btn_1
-    node.expression.calle.object.arguments[0].value
+    node.expression.callee.object.arguments[0].value
     // click
     node.expression.arguments[0].value
 
     // window
-    node.expression.arguments[1].body.body[0].expression.calle.object.name
+    node.expression.arguments[1].body.body[0].expression.callee.object.name
 
     // open
-    node.expression.arguments[1].body.body[0].expression.calle.object.property.name
+    node.expression.arguments[1].body.body[0].expression.callee.property.name
 
     // www.reusli.com
     node.expression.arguments[1].body.body[0].expression.arguments[0].value
