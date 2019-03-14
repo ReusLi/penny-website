@@ -107,6 +107,7 @@ const astNode = babel.transform(fileContent, {
 
 // const newCode = generate(astNode.ast, opt).code;
 const judgeExpressionType = (node) => {
+    const a = t.isExpressionStatement(node)
     // #btn_1
     node.expression.callee.object.arguments[0].value
     // click
