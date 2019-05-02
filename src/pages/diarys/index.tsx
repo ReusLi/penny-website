@@ -25,7 +25,7 @@ export default class Dirays extends React.Component<{}, {}> {
         super({})
     }
 
-    async componentWillMount() {
+    async componentWillMount () {
         const date = [
             new Date().getFullYear(),
             new Date().getMonth() + 1,
@@ -34,7 +34,7 @@ export default class Dirays extends React.Component<{}, {}> {
         await findDiaryByDate(date)
     }
 
-    render() {
+    render () {
         return (
             <Row style={fullHeight}>
                 <Col span={6}>
@@ -70,7 +70,7 @@ export default class Dirays extends React.Component<{}, {}> {
         )
     }
 
-    createDiary() {
+    createDiary () {
         const diaryVO: DiaryVO = diaryUtil.getDiaryVO()
 
         diaryStore.updateCurDiaryModel(diaryVO)
