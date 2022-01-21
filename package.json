@@ -71,7 +71,7 @@
     "jquery-file-upload-middleware": "^0.1.8",
     "karma-chai": "^0.1.0",
     "lodash": "^4.17.10",
-    "log4js": "^3.0.6",
+    "log4js": "^6.4.0",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.8",
     "monaco-editor": "^0.13.1",
